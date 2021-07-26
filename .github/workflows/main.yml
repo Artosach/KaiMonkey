@@ -4,7 +4,7 @@ jobs:
   sigma_code_scanning_run_steps:
     runs-on: ubuntu-latest
     container:
-      image: hub.docker.com/repository/docker/artosach/myprivaterepo:sigma
+      image: docker.io/artosach/myprivaterepo:sigma
       credentials:
        username: ${{secrets.DOCKERHUB_ARTOSACH_USERNAME}}
        password: ${{secrets.DOCKERHUB_ARTOSACH_PASSWORD}}
