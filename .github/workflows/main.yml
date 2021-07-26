@@ -2,7 +2,7 @@ on: [push]
   
 jobs:
   sigma_code_scanning_run_steps:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     container:
       image: hub.docker.com/repository/docker/artosach/myprivaterepo:sigma
       credentials:
