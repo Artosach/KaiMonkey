@@ -14,9 +14,9 @@ jobs:
       username: ${{ secrets.DOCKERHUB_ARTOSACH_USERNAME }}
       password: ${{ secrets.DOCKERHUB_ARTOSACH_PASSWORD }}
     steps:
-      - name: Check out the repo 
+      - name: Check out the repo
       uses: actions/checkout@v2
-      - name: Sigma analysis 
+      - name: Sigma analysis
       run: sigma analyze --format github .
       - name: Upload SARIF file
       uses: github/codeql-action/upload-sarif@v1
