@@ -9,16 +9,20 @@ jobs:
 
 sigma_code_scanning_run_steps:
 
-runs-on: ubuntu-latest container:
-
+runs-on: ubuntu-latest 
+container:
 image: docker.io/artosach/myprivaterepo:sigma credentials:
+  username: ${{ secrets.DOCKERHUB_ARTOSACH_USERNAME }} 
+  password: ${{ secrets.DOCKERHUB_ARTOSACH_PASSWORD }} 
+  
+steps:
+- name: Check out the repo
+uses: actions/checkout@v2
 
-username: ${{ secrets.DOCKERHUB_ARTOSACH_USERNAME }} password: ${{ secrets.DOCKERHUB_ARTOSACH_PASSWORD }} steps:
+- name: Sigma analysis
+run: sigma analyze --format github .
 
-- name: Check out the repo uses: actions/checkout@v2
-
-- name: Sigma analysis run: sigma analyze --format github .
-
-- name: Upload SARIF file uses: github/codeql-action/upload-sarif@v1 with:
-
+- name: Upload SARIF file
+uses: github/codeql-action/upload-sarif@v1 
+with:
 sarif_file: sigma-results.json
